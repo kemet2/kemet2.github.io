@@ -52,18 +52,50 @@
             font-size: 1rem;
             margin-top: 5px;
             line-height: 1.6;
+            margin-bottom: 20px;
         }
+
+        /* تنسيق أزرار التواصل الاجتماعي الجديدة */
+        .social-media-box {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .social-icon {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            color: white;
+            font-size: 0.9rem;
+            font-weight: bold;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .social-icon:hover {
+            transform: scale(1.05);
+        }
+
+        .facebook-btn { background-color: #1877F2; }
+        .tiktok-btn { background-color: #000000; border: 1px solid #333; }
+        .telegram-btn { background-color: #0088cc; }
 
         .subscribe-btn {
             display: inline-block;
             background-color: var(--main-color);
             color: white;
             text-decoration: none;
-            padding: 10px 24px;
+            padding: 10px 35px;
             border-radius: 30px;
             font-weight: bold;
-            margin-top: 15px;
+            font-size: 1.1rem;
             transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
         }
 
         .subscribe-btn:hover {
@@ -149,15 +181,23 @@
         
         <!-- القسم العلوي الشخصي -->
         <div class="profile">
-            <img src="https://yt3.ggpht.com/EyktsgD-7GCdJr-lxD6N7pgr5cQDtcJrTEIy77XF8wCRS3F9b7LTpysJ-8hEerHXKW0HK79LmA=s600-c-k-c0x00ffffff-no-rj-rp-mo" alt="شعار القناة">
+            <img src="https://ggpht.com" alt="شعار القناة">
             <h1>ترند حكايات بلادي | تاريخ مصر والقبط</h1>
             <p>منصة تعليم القبطى والمصرى القديم، ترانيم قبطية والألحان، قاموس ناطق للغات، قصص وحكايات، مسابقات وتسلية، برامج تعليمية</p>
-            <a href="https://www.youtube.com/channel/UCIyPyEVDel5GZJ6a_V2l7dw" target="_blank" class="subscribe-btn">اشترك في القناة 🚀</a>
+            
+            <!-- أزرار وسائل التواصل الاجتماعي - استبدل علامة # بروابط حساباتك الحقيقية لاحقاً -->
+            <div class="social-media-box">
+                <a href="#" target="_blank" class="social-icon facebook-btn">📱 فيسبوك</a>
+                <a href="#" target="_blank" class="social-icon tiktok-btn">🎵 تيك توك</a>
+                <a href="#" target="_blank" class="social-icon telegram-btn">✈️ تليجرام</a>
+            </div>
+
+            <a href="https://youtube.com" target="_blank" class="subscribe-btn">اشترك في القناة 🚀</a>
         </div>
 
         <h2>🎬 أحدث مقاطع الفيديو ونشاطات القناة</h2>
         <div class="links-grid" id="video-grid">
-            <!-- سيتم توليد بطاقات الفيديوهات تلقائياً هنا -->
+            <!-- سيتم توليد بطاقات الفيديوهات تلقائياً هنا عبر الروابط بالأسفل -->
         </div>
 
     </div>
@@ -167,9 +207,11 @@
             "https://youtu.be/1fm4ThNj1Zo", 
             "https://youtu.be/_uBjb7VLzHM", 
             "https://youtu.be/ZirTg7ktfKg", 
-            "https://youtu.be/y1v_vae0_S4", 
-            "https://youtu.be/H9jhyeWlHEQ", 
-            "https://youtu.be/qyv5PeMgnP8"  
+            "https://youtu.be", 
+            "https://youtu.be", 
+            "https://youtu.be/qyv5PeMgnP8",  
+            "https://youtube.com", 
+            "https://youtube.com"
         ];
 
         const grid = document.getElementById('video-grid');
@@ -177,15 +219,14 @@
         videoUrls.forEach((url) => {
             let videoId = null;
 
-            // استخراج معرف الفيديو بشكل صحيح لجميع أنواع الروابط
             if (url.includes("shorts/")) {
                 const parts = url.split("shorts/");
-                if(parts[1]) {
+                if(parts && parts[1]) {
                     videoId = parts[1].split(/[?#]/)[0];
                 }
             } else if (url.includes("youtu.be/")) {
                 const parts = url.split("youtu.be/");
-                if(parts[1]) {
+                if(parts && parts[1]) {
                     videoId = parts[1].split(/[?#]/)[0];
                 }
             } else {
@@ -195,8 +236,7 @@
             }
 
             if (videoId) {
-                // استخدام السيرفر والتركيب البرمجي الصحيح لجلب الصور بوضوح عالي
-               const thumbUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+                const thumbUrl = `https://youtube.com{videoId}/hqdefault.jpg`;
                 
                 const card = document.createElement('a');
                 card.href = url;
