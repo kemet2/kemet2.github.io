@@ -164,16 +164,15 @@
     </div>
 
     <script>
-        // مصفوفة الروابط الحقيقية لقناتك المتميزة
         const videoUrls = [
-            "https://youtu.be/1fm4ThNj1Zo", 
-            "https://youtu.be/_uBjb7VLzHM", 
-            "https://youtu.be/ZirTg7ktfKg", 
-            "https://youtu.be/y1v_vae0_S4", 
-            "https://youtu.be/H9jhyeWlHEQ", 
-            "https://youtu.be/qyv5PeMgnP8",  
-            "https://youtube.com/shorts/qrlHOCRH1WE", 
-            "https://youtube.com/shorts/9lIRaYU5uQk"
+            "https://youtu.be", 
+            "https://youtu.be", 
+            "https://youtu.be", 
+            "https://youtu.be", 
+            "https://youtu.be", 
+            "https://youtu.be",  
+            "https://youtube.com", 
+            "https://youtube.com"
         ];
 
         const grid = document.getElementById('video-grid');
@@ -181,7 +180,7 @@
         videoUrls.forEach((url) => {
             let videoId = "";
             
-            // استخراج معرف الفيديو بدقة متناهية للفيديوهات العادية وقصيرة Shorts
+            // نظام دقيق لاستخراج معرف أي فيديو يوتيوب عادياً كان أو Shorts
             if (url.includes("shorts/")) {
                 videoId = url.split("shorts/")[1].split("?")[0];
             } else if (url.includes("youtu.be/")) {
@@ -191,8 +190,8 @@
             }
 
             if (videoId) {
-                // جلب الصورة المصغرة الأصلية من خوادم يوتيوب بجودة عالية
-                const thumbUrl = `https://youtube.com{videoId}/mqdefault.jpg`;
+                // جلب الصورة بدقة hqdefault لضمان ظهورها لجميع الفيديوهات
+                const thumbUrl = `https://youtube.com{videoId}/hqdefault.jpg`;
                 
                 const card = document.createElement('a');
                 card.href = url;
@@ -209,6 +208,7 @@
             }
         });
     </script>
+
 
 </body>
 </html>
