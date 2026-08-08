@@ -164,7 +164,7 @@
     </div>
 
     <script>
-        // مصفوفة الروابط: ضع هنا روابط فيديوهاتك المفضلة أو الأحدث لتظهر فوراً بالموقع
+        // مصفوفة الروابط الحقيقية لقناتك المتميزة
         const videoUrls = [
             "https://youtu.be/1fm4ThNj1Zo", 
             "https://youtu.be/_uBjb7VLzHM", 
@@ -172,34 +172,36 @@
             "https://youtu.be/y1v_vae0_S4", 
             "https://youtu.be/H9jhyeWlHEQ", 
             "https://youtu.be/qyv5PeMgnP8",  
-            "https://youtube.com/shorts/qrlHOCRH1WE?feature=share", 
-            "https://youtube.com/shorts/9lIRaYU5uQk?feature=share", 
-            "https://youtube.com/shorts/9i1Y1ZfhPzA?feature=share", 
-            "https://youtube.com/shorts/OjjuD1qZHHs?feature=share", 
-            "https://youtube.com/shorts/zPqbT6euPqk?feature=share",  
-            "https://youtube.com/shorts/OjjuD1qZHHs?feature=share"  
-
+            "https://youtube.com/shorts/qrlHOCRH1WE", 
+            "https://youtube.com/shorts/9lIRaYU5uQk"
         ];
 
         const grid = document.getElementById('video-grid');
 
-        videoUrls.forEach((url, index) => {
-            // استخراج معرف الفيديو لجلب الصورة المصغرة تلقائياً
-            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-            const match = url.match(regExp);
-            const videoId = (match && match[2].length == 11) ? match[2] : null;
+        videoUrls.forEach((url) => {
+            let videoId = "";
+            
+            // استخراج معرف الفيديو بدقة متناهية للفيديوهات العادية وقصيرة Shorts
+            if (url.includes("shorts/")) {
+                videoId = url.split("shorts/")[1].split("?")[0];
+            } else if (url.includes("youtu.be/")) {
+                videoId = url.split("youtu.be/")[1].split("?")[0];
+            } else if (url.includes("v=")) {
+                videoId = url.split("v=")[1].split("&")[0];
+            }
 
             if (videoId) {
-                const thumbUrl = `https://youtube.com{videoId}/maxresdefault.jpg`;
+                // جلب الصورة المصغرة الأصلية من خوادم يوتيوب بجودة عالية
+                const thumbUrl = `https://youtube.com{videoId}/mqdefault.jpg`;
                 
                 const card = document.createElement('a');
                 card.href = url;
                 card.target = "_blank";
                 card.className = "card";
                 card.innerHTML = `
-                    <img src="${thumbUrl}" alt="فيديو يوتيوب" onerror="this.src='https://youtube.com{videoId}/hqdefault.jpg'">
+                    <img src="${thumbUrl}" alt="فيديو يوتيوب">
                     <div class="card-content">
-                        <h3>اضغط لمشاهدة المقطع الجديد على يوتيوب مباشرة بجودة عالية</h3>
+                        <h3>اضغط هنا لمشاهدة هذا المقطع الممتع مباشرة على يوتيوب 🎬</h3>
                         <span class="btn">شاهد الآن</span>
                     </div>
                 `;
@@ -207,5 +209,6 @@
             }
         });
     </script>
+
 </body>
 </html>
