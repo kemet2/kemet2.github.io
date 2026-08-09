@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ترند حكايات بلادي | تاريخ مصر والقبط | الموقع الرسمى</title>
+    <!-- استدعاء مكتبة أيقونات FontAwesome لإضافة أيقونة الفيسبوك واليوتيوب -->
+    <link rel="stylesheet" href="https://cloudflare.com">
+    
     <style>
         :root {
             --main-color: #ff0000; 
+            --fb-color: #1877f2;
             --bg-color: #141414; 
             --text-color: #ffffff;
             --card-bg: #1f1f1f;
@@ -18,18 +22,46 @@
             color: var(--text-color);
             margin: 0;
             padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        }
+
+        /* 📣 شريط الأخبار المتحرك */
+        .news-ticker {
+            background-color: var(--main-color);
+            color: white;
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 10px 0;
+            font-weight: bold;
+            font-size: 0.95rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+
+        .ticker-text {
+            display: inline-block;
+            padding-right: 100%;
+            animation: ticker 25s linear infinite;
+        }
+
+        @keyframes ticker {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(100%, 0, 0); }
+        }
+
+        .news-ticker:hover .ticker-text {
+            animation-play-state: paused;
         }
 
         .container {
-            width: 90%;
-            max-width: 800px;
-            margin: 40px auto;
+            width: 95%;
+            max-width: 1200px;
+            margin: 20px auto;
             text-align: center;
         }
 
+        /* القسم العلوي الشخصي */
         .profile {
             margin-bottom: 30px;
         }
@@ -54,16 +86,29 @@
             line-height: 1.6;
         }
 
-        .subscribe-btn {
-            display: inline-block;
-            background-color: var(--main-color);
+        /* أزرار قنوات التواصل */
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .subscribe-btn, .facebook-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             color: white;
             text-decoration: none;
             padding: 10px 24px;
             border-radius: 30px;
             font-weight: bold;
-            margin-top: 15px;
             transition: 0.3s;
+        }
+
+        .subscribe-btn {
+            background-color: var(--main-color);
         }
 
         .subscribe-btn:hover {
@@ -71,20 +116,45 @@
             background-color: #cc0000;
         }
 
+        .facebook-btn {
+            background-color: var(--fb-color);
+        }
+
+        .facebook-btn:hover {
+            transform: scale(1.05);
+            background-color: #145dbf;
+        }
+
+        /* 🗺️ تقسيم الشاشة */
+        .layout-wrapper {
+            display: flex;
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .main-content {
+            flex: 3;
+        }
+
+        .sidebar {
+            flex: 1;
+            min-width: 280px;
+        }
+
         h2 {
             text-align: right;
             border-right: 4px solid var(--main-color);
             padding-right: 10px;
-            font-size: 1.4rem;
-            margin-top: 40px;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            margin-top: 0;
         }
 
         .links-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
             width: 100%;
-            margin-top: 20px;
         }
 
         .card {
@@ -121,7 +191,7 @@
 
         .card-content h3 {
             margin: 0 0 15px 0;
-            font-size: 1rem;
+            font-size: 0.95rem;
             line-height: 1.4;
         }
 
@@ -141,35 +211,125 @@
             background-color: var(--main-color);
             border-color: var(--main-color);
         }
+
+        /* ✉️ كروت البوستات الجانبية */
+        .posts-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .post-card {
+            background-color: var(--card-bg);
+            border: 1px solid #2a2a2a;
+            border-right: 4px solid var(--main-color);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: right;
+        }
+
+        .post-card p {
+            margin: 0;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #eee;
+        }
+
+        .post-date {
+            display: block;
+            font-size: 0.75rem;
+            color: #888;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 900px) {
+            .layout-wrapper {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
+
+    <!-- 📣 شريط الأخبار المتحرك -->
+    <div class="news-ticker">
+        <div class="ticker-text">
+            🔥 أهلاً بكم في المنصة الرسمية لـ "ترند حكايات بلادي" 🎬 لا تنسوا الاشتراك وتفعيل الجرس ليصلكم كل جديد في تاريخ مصر والقبط 🚀 مسابقات وجوائز وتسلية قريباً جداً في قسم المنتدى!
+        </div>
+    </div>
 
     <div class="container">
         
         <!-- القسم العلوي الشخصي -->
         <div class="profile">
-            <img src="https://yt3.ggpht.com/EyktsgD-7GCdJr-lxD6N7pgr5cQDtcJrTEIy77XF8wCRS3F9b7LTpysJ-8hEerHXKW0HK79LmA=s600-c-k-c0x00ffffff-no-rj-rp-mo" alt="شعار القناة">
+            <img src="https://ggpht.com" alt="شعار القناة">
             <h1>ترند حكايات بلادي | تاريخ مصر والقبط</h1>
-            <p>منصة تعليم القبطى والمصرى القديم، ترانيم قبطية والألحان، قاموس ناطق للغات، قصص وحكايات، مسابقات وتسلية، برامج تعليمية</p>
-            <a href="https://www.youtube.com/channel/UCIyPyEVDel5GZJ6a_V2l7dw" target="_blank" class="subscribe-btn">اشترك في القناة 🚀</a>
+            <p>منصة تعليم القبطى والمصرى القديم، ترانيم قبطية والألحان، قاموس ناطق للغات، قصص وحكايات، مسابقات وتسلية، برامج تعليمية _ موقع مجدى نسيم فهيم</p> 
+           
+            <!-- أزرار التواصل (تم إضافة فيسبوك هنا) -->
+            <div class="social-buttons">
+                <a href="https://youtube.com" target="_blank" class="subscribe-btn">
+                    <i class="fab fa-youtube"></i> اشترك في القناة 🚀
+                </a>
+                <!-- استبدل الرابط أدناه برابط صفحتك الحقيقي على فيسبوك -->
+                <a href="https://facebook.com" target="_blank" class="facebook-btn">
+                    <i class="fab fa-facebook-f"></i> تابعنا على فيسبوك
+                </a>
+            </div>
         </div>
 
-        <h2>🎬 أحدث مقاطع الفيديو ونشاطات القناة</h2>
-        <div class="links-grid" id="video-grid">
-            <!-- سيتم توليد بطاقات الفيديوهات تلقائياً هنا -->
+        <!-- التقسيم الرئيسي الجديد للموقع -->
+        <div class="layout-wrapper">
+            
+            <!-- اليمنى: مقاطع الفيديو -->
+            <main class="main-content">
+                <h2>🎬 أحدث مقاطع الفيديو ونشاطات القناة</h2>
+                <div class="links-grid" id="video-grid">
+                    <!-- سيتم توليد بطاقات الفيديوهات تلقائياً هنا -->
+                </div>
+            </main>
+
+            <!-- اليسرى: البوستات الجانبية -->
+            <aside class="sidebar">
+                <h2>📜 آخر بوستات المنتدى والتحديثات</h2>
+                <div class="posts-list">
+                    
+                    <!-- بوست 1 -->
+                    <div class="post-card">
+                        <p>📢 تم إطلاق سلسلة دروس جديدة لتعليم اللغة المصرية القديمة (الخط الهيروغليفي) بطريقة مبسطة، ترقبوها!</p>
+                        <span class="post-date">منذ ساعتين</span>
+                    </div>
+
+                    <!-- بوست 2 -->
+                    <div class="post-card">
+                        <p>🏆 انتظروا مسابقة الحكايات القبطية الأسبوعية القادمة يوم الجمعة، مع تمنياتنا بالتوفيق للجميع.</p>
+                        <span class="post-date">بالأمس</span>
+                    </div>
+
+                    <!-- بوست 3 -->
+                    <div class="post-card">
+                        <p>✨ قاموس اللغة الناطق الخاص بنا تم تحديثه ليضم مفردات أكثر، شاركونا آرائكم في خانة التعليقات على يوتيوب.</p>
+                        <span class="post-date">منذ 3 أيام</span>
+                    </div>
+
+                </div>
+            </aside>
+
         </div>
 
     </div>
 
     <script>
         const videoUrls = [
-            "https://youtu.be/1fm4ThNj1Zo", 
-            "https://youtu.be/_uBjb7VLzHM", 
-            "https://youtu.be/ZirTg7ktfKg", 
-            "https://youtu.be/y1v_vae0_S4", 
-            "https://youtu.be/H9jhyeWlHEQ", 
-            "https://youtu.be/qyv5PeMgnP8"  
+            "https://youtu.be", 
+            "https://youtu.be", 
+            "https://youtu.be", 
+            "https://youtu.be", 
+            "https://youtu.be", 
+            "https://youtu.be"  
         ];
 
         const grid = document.getElementById('video-grid');
@@ -177,7 +337,6 @@
         videoUrls.forEach((url) => {
             let videoId = null;
 
-            // استخراج معرف الفيديو بشكل صحيح لجميع أنواع الروابط
             if (url.includes("shorts/")) {
                 const parts = url.split("shorts/");
                 if(parts[1]) {
@@ -195,8 +354,7 @@
             }
 
             if (videoId) {
-                // استخدام السيرفر والتركيب البرمجي الصحيح لجلب الصور بوضوح عالي
-               const thumbUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+               const thumbUrl = `https://youtube.com{videoId}/hqdefault.jpg`;
                 
                 const card = document.createElement('a');
                 card.href = url;
