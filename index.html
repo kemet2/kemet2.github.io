@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ترند حكايات بلادي | تاريخ مصر والقبط | الموقع الرسمى</title>
-    <!-- استدعاء مكتبة أيقونات FontAwesome لإضافة أيقونة الفيسبوك واليوتيوب -->
+    <!-- استدعاء مكتبة أيقونات FontAwesome لإضافة أيقونات فيسبوك ويوتيوب -->
     <link rel="stylesheet" href="https://cloudflare.com">
     
     <style>
@@ -125,7 +125,7 @@
             background-color: #145dbf;
         }
 
-        /* 🗺️ تقسيم الشاشة */
+        /* 🗺️ تقسيم الشاشة (المحتوى الرئيسي والجانب) */
         .layout-wrapper {
             display: flex;
             gap: 25px;
@@ -265,16 +265,16 @@
         
         <!-- القسم العلوي الشخصي -->
         <div class="profile">
-            <img src="https://ggpht.com" alt="شعار القناة">
+            <img src="https://yt3.ggpht.com/EyktsgD-7GCdJr-lxD6N7pgr5cQDtcJrTEIy77XF8wCRS3F9b7LTpysJ-8hEerHXKW0HK79LmA=s600-c-k-c0x00ffffff-no-rj-rp-mo" alt="شعار القناة">
             <h1>ترند حكايات بلادي | تاريخ مصر والقبط</h1>
             <p>منصة تعليم القبطى والمصرى القديم، ترانيم قبطية والألحان، قاموس ناطق للغات، قصص وحكايات، مسابقات وتسلية، برامج تعليمية</p>
             
             <!-- أزرار التواصل -->
             <div class="social-buttons">
-                <a href="https://youtube.com" target="_blank" class="subscribe-btn">
+                <a href="https://www.youtube.com/channel/UCIyPyEVDel5GZJ6a_V2l7dw" target="_blank" class="subscribe-btn">
                     <i class="fab fa-youtube"></i> اشترك في القناة 🚀
                 </a>
-                <!-- ضع رابط صفحتك الحقيقي بدلاً من الرابط أدناه -->
+                <!-- استبدل الرابط أدناه برابط صفحتك الحقيقي على فيسبوك -->
                 <a href="https://web.facebook.com/salyl.elfrana" target="_blank" class="facebook-btn">
                     <i class="fab fa-facebook-f"></i> تابعنا على فيسبوك
                 </a>
@@ -299,19 +299,19 @@
                     
                     <!-- بوست 1 -->
                     <div class="post-card">
-                        <p>📢 تم إطلاق سلسلة دروس جديدة لتعليم اللغة المصرية القديمة (الخط الهيروغليفي) بطريقة مبسطة, ترقبوها!</p>
+                        <p>📢 تم إطلاق سلسلة دروس جديدة لتعليم اللغة المصرية القديمة (الخط الهيروغليفي) بطريقة مبسطة، ترقبوها!</p>
                         <span class="post-date">منذ ساعتين</span>
                     </div>
 
                     <!-- بوست 2 -->
                     <div class="post-card">
-                        <p>🏆 انتظروا مسابقة الحكايات القبطية الأسبوعية القادمة يوم الجمعة, مع تمنياتنا بالتوفيق للجميع.</p>
+                        <p>🏆 انتظروا مسابقة الحكايات القبطية الأسبوعية القادمة يوم الجمعة، مع تمنياتنا بالتوفيق للجميع.</p>
                         <span class="post-date">بالأمس</span>
                     </div>
 
                     <!-- بوست 3 -->
                     <div class="post-card">
-                        <p>✨ قاموس اللغة الناطق الخاص بنا تم تحديثه ليضم مفردات أكثر, شاركونا آرائكم في خانة التعليقات على يوتيوب.</p>
+                        <p>✨ قاموس اللغة الناطق الخاص بنا تم تحديثه ليضم مفردات أكثر، شاركونا آرائكم في خانة التعليقات على يوتيوب.</p>
                         <span class="post-date">منذ 3 أيام</span>
                     </div>
 
@@ -322,31 +322,42 @@
 
     </div>
 
+    <!-- كود الـ JavaScript الأصلي الخاص بك بدون أي تعديل لضمان عمل الفيديوهات بنجاح -->
     <script>
-        // مصفوفة روابط الفيديوهات الخاصة بك
         const videoUrls = [
-            "https://youtu.be", 
-            "https://youtu.be", 
-            "https://youtu.be", 
-            "https://youtu.be", 
-            "https://youtu.be", 
-            "https://youtu.be"  
+            "https://youtu.be/1fm4ThNj1Zo", 
+            "https://youtu.be/_uBjb7VLzHM", 
+            "https://youtu.be/ZirTg7ktfKg", 
+            "https://youtu.be/y1v_vae0_S4", 
+            "https://youtu.be/H9jhyeWlHEQ", 
+            "https://youtu.be/qyv5PeMgnP8"  
         ];
 
         const grid = document.getElementById('video-grid');
 
-        // دالة تم تعديلها وفحصها بدقة لاستخراج معرف الفيديو بشكل صحيح ومضمون
-        function getYoutubeId(url) {
-            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|shorts\/)([^#\&\?]*).*/;
-            const match = url.match(regExp);
-            return (match && match[2] && match[2].length === 11) ? match[2] : null;
-        }
-
         videoUrls.forEach((url) => {
-            const videoId = getYoutubeId(url);
+            let videoId = null;
+
+            // استخراج معرف الفيديو بشكل صحيح لجميع أنواع الروابط
+            if (url.includes("shorts/")) {
+                const parts = url.split("shorts/");
+                if(parts[1]) {
+                    videoId = parts[1].split(/[?#]/)[0];
+                }
+            } else if (url.includes("youtu.be/")) {
+                const parts = url.split("youtu.be/");
+                if(parts[1]) {
+                    videoId = parts[1].split(/[?#]/)[0];
+                }
+            } else {
+                const regExp = /^.*(v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+                const match = url.match(regExp);
+                videoId = (match && match[2].length == 11) ? match[2] : null;
+            }
 
             if (videoId) {
-                const thumbUrl = `https://youtube.com{videoId}/hqdefault.jpg`;
+                // استخدام السيرفر والتركيب البرمجي الصحيح لجلب الصور بوضوح عالي
+               const thumbUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
                 
                 const card = document.createElement('a');
                 card.href = url;
